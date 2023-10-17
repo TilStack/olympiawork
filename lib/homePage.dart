@@ -108,15 +108,31 @@ class _HomePageState extends State<HomePage>
               },
             ),
           ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 100, // Ajuste la hauteur du dégradé
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.7), // Opacité du noir
+                    Colors.transparent, // Opacité transparente
+                  ],
+                ),
+              ),
+            ),
+          ),
           // Bouton
           Positioned(
-            bottom:
-                screenHeight * 0.2, // Ajuste la position verticale du bouton
-            left: screenWidth * 0.2, // Ajuste la position horizontale du bouton
+            bottom: screenHeight * 0.2,
+            left: (screenWidth - 200) /
+                2, // Ajuste la position horizontale du bouton
             child: ElevatedButton(
               onPressed: () {
-                // Effectue l'action du bouton ici
-                // Par exemple, tu peux naviguer vers une autre page
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
@@ -125,11 +141,15 @@ class _HomePageState extends State<HomePage>
                 );
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.red, // Couleur du bouton en rouge
+                primary: Colors.red,
+                fixedSize: Size(200, 50), // Taille du bouton
               ),
               child: Text(
                 'Commencer',
-                style: GoogleFonts.poppins(color: Colors.white),
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
