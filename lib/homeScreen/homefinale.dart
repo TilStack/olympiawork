@@ -29,6 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
     "Spanish",
     "Japenese"
   ];
+  List<String> uptitle = [
+    "Les nouveautés",
+    "Prochaines sorties",
+    "En premiere ligne"
+  ];
+  List<bool> uptitlebool = [true, false, false];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +46,101 @@ class _HomeScreenState extends State<HomeScreen> {
         () => _displayBottomSheetLogin(context),
         location: "Bessengue",
         language: "Eng",
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: ((context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        50,
+                      ),
+                      border: Border.all(color: Colors.grey),
+                      color: uptitlebool[index]
+                          ? Colors.white
+                          : Colors.transparent,
+                    ),
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 5,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          uptitle[index],
+                          style: GoogleFonts.poppins(
+                            color: uptitlebool[index]
+                                ? Colors.black
+                                : Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_drop_down,
+                          color:
+                              uptitlebool[index] ? Colors.black : Colors.white,
+                          size: 15,
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+                itemCount: uptitle.length,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              height: MediaQuery.of(context).size.height / 2,
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              color: Colors.white,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Semaine du 17-23 Oct',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                        ),
+                      )
+                    ],
+                  ),
+                  Container(
+                    height: 300,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
