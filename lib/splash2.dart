@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:olympiawork/homePage.dart';
 
-import 'const.dart';
 
 class SplashScreen2 extends StatefulWidget {
   const SplashScreen2({Key? key});
