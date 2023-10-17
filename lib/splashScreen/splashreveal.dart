@@ -2,14 +2,14 @@ import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:olympiawork/homePage.dart';
 
-class SplashEssai extends StatefulWidget {
-  SplashEssai({super.key});
+class SplashReval extends StatefulWidget {
+  SplashReval({super.key});
 
   @override
-  State<SplashEssai> createState() => _SplashEssaiState();
+  State<SplashReval> createState() => _SplashRevalState();
 }
 
-class _SplashEssaiState extends State<SplashEssai>
+class _SplashRevalState extends State<SplashReval>
     with TickerProviderStateMixin {
   AnimationController? animationController;
   Animation<double>? animation;

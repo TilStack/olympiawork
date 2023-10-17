@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:olympiawork/splash1.dart';
+import 'package:olympiawork/splashScreen/splash1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: SplashScreen1(),
+      home: SplashScreen(),
     );
   }
 }

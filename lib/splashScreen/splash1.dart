@@ -2,14 +2,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'splashreveal.dart';
 
-class SplashScreen1 extends StatefulWidget {
-  const SplashScreen1({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashScreen1> createState() => _SplashScreen1State();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreen1State extends State<SplashScreen1> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -17,7 +17,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => SplashEssai(),
+          builder: (context) => SplashReval(),
         ),
       );
     });
