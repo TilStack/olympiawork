@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:olympiawork/splash2.dart';
-
-import 'const.dart';
+import 'splashreveal.dart';
 
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({super.key});
