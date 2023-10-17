@@ -55,7 +55,7 @@ AppBar appBarWidget(BuildContext context, Function()? function1,
     ),
     actions: [
       GestureDetector(
-        onTap: function1,
+        onTap: function2,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
