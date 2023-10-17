@@ -1,6 +1,7 @@
 import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 import 'package:flutter/material.dart';
-import 'package:olympiawork/homePage.dart';
+
+import '../homeScreen/homePage.dart';
 
 class SplashReval extends StatefulWidget {
   SplashReval({super.key});
@@ -51,14 +52,15 @@ class _SplashRevalState extends State<SplashReval>
       body: CircularRevealAnimation(
         animation: animation!,
         child: Container(
-            color: Colors.red,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Center(
-              child: Image.asset(
-                "assets/images/olymp.png",
-              ),
-            ),),
+          color: Colors.red,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Center(
+            child: Image.asset(
+              "assets/images/olymp.png",
+            ),
+          ),
+        ),
       ),
     );
   }
