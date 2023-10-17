@@ -1,6 +1,10 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:olympiawork/widget/appBar.dart';
+import 'package:olympiawork/widget/movieDetails.dart';
+import '../movie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,6 +39,24 @@ class _HomeScreenState extends State<HomeScreen> {
     "En premiere ligne"
   ];
   List<bool> uptitlebool = [true, false, false];
+  List<Movie> movies = [];
+  @override
+  void initState() {
+    super.initState();
+    movies = rawData
+        .map(
+          (e) => Movie(
+              title: e['title'],
+              image: e['image'],
+              index: e['index'],
+              like: e['like'],
+              note: e['note'],
+              categorie: e['categorie'],
+              time: e['time']),
+        )
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
         language: "Eng",
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Container(
@@ -96,12 +119,106 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: uptitle.length,
               ),
             ),
-            const SizedBox(height: 10),
             Container(
-              height: MediaQuery.of(context).size.height / 2,
               width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              color: Colors.white,
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: CarouselSlider.builder(
+                itemCount: movies.length,
+                itemBuilder: ((context, index, realIndex) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              MoviesDetails(movie: movies[index]),
+                        ),
+                      );
+                    },
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            movies[index].image,
+                            height: 300,
+                            width: 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            color: Colors.black.withOpacity(0.6),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  movies[index].title,
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      movies[index].note,
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Row(
+                                      children: List.generate(
+                                        5,
+                                        (_) => const Icon(
+                                          Icons.star,
+                                          color: Colors.red,
+                                          size: 15,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 10,
+                          right: 10,
+                          child: Row(
+                            children: [
+                              const Icon(Icons.favorite, color: Colors.red),
+                              const SizedBox(width: 4),
+                              Text(
+                                movies[index].like,
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+                options: CarouselOptions(
+                  height: 300,
+                  autoPlay: true,
+                  viewportFraction: 0.55,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enlargeCenterPage: true,
+                  autoPlayAnimationDuration: const Duration(seconds: 2),
+                ),
+              ),
             ),
             const SizedBox(
               height: 10,
@@ -110,31 +227,101 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Semaine du 17-23 Oct',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+                  ListTile(
+                    leading: Text(
+                      'Semaine du 17-23 Oct',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.search,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
+                    ),
+                    trailing: const Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                      size: 25,
+                    ),
                   ),
                   Container(
                     height: 300,
                     width: MediaQuery.of(context).size.width,
-                    color: Colors.white,
+                    child: MasonryGridView.builder(
+                      itemCount: movies.length,
+                      gridDelegate:
+                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      itemBuilder: ((context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    MoviesDetails(movie: movies[index]),
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Image.asset(
+                                      movies[index].image,
+                                    ),
+                                    Positioned(
+                                      top: 10,
+                                      right: 10,
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(5),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.red,
+                                            ),
+                                            child: Text(
+                                              movies[index].time,
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  movies[index].title,
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                Text(
+                                  movies[index].categorie,
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.grey,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
                   ),
                 ],
               ),
