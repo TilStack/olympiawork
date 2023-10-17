@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:olympiawork/splash2.dart';
 
+import 'const.dart';
+
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({super.key});
 
@@ -18,7 +20,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => SplashScreen2(),
+          builder: (context) => SplashEssai(),
         ),
       );
     });
