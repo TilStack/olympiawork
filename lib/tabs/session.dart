@@ -10,6 +10,22 @@ class Session extends StatefulWidget {
 class _SessionState extends State<Session> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: 5,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

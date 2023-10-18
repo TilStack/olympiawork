@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flick_video_player/flick_video_player.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:olympiawork/movie.dart';
 import 'package:video_player/video_player.dart';
@@ -19,7 +20,9 @@ class _AboutState extends State<About> {
         videoPlayerController: VideoPlayerController.asset(widget.movie.video));
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    var text = lorem(paragraphs: 1, words: 200);
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: Column(
         children: [
           Center(
@@ -84,7 +87,137 @@ class _AboutState extends State<About> {
               ),
             ),
           ),
-          Container()
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Color.fromARGB(255, 56, 53, 53),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 5),
+                  child: Text(
+                    widget.movie.description,
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.poppins(
+                      color: Colors.white10,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                ListTile(
+                  leading: Text(
+                    "Certificate",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  title: Text(
+                    "16+",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: Text(
+                    "Runtime",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  title: Text(
+                    "01:55",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: Text(
+                    "Release",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  title: Text(
+                    "2023",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: Text(
+                    "Genre",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  title: Text(
+                    widget.movie.categorie,
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: Text(
+                    "Director",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  title: Text(
+                    "TIL Stack",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: Text(
+                    "Cast",
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  title: Text(
+                    text,
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(
+              vertical: 8,
+            ),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                fixedSize: Size(width / 1.3, 60),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                    10,
+                  ),
+                ),
+              ),
+              child: Text(
+                "Select Session",
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
     );
