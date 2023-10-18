@@ -65,7 +65,9 @@ class _MoviesDetailsState extends State<MoviesDetails> {
               child: TabBarView(
                 children: [
                   About(movie: widget.movie),
-                  Session(),
+                  Session(
+                    movie: widget.movie,
+                  ),
                 ],
               ),
             )

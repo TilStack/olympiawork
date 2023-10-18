@@ -20,7 +20,7 @@ class _AboutState extends State<About> {
         videoPlayerController: VideoPlayerController.asset(widget.movie.video));
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    var text = lorem(paragraphs: 1, words: 200);
+    var text = lorem(paragraphs: 1, words: 50);
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Column(
@@ -29,10 +29,9 @@ class _AboutState extends State<About> {
             child: Container(
               width: width / 1.2,
               height: height / 3,
-              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
+              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
               ),
               child: FlickVideoPlayer(
                 flickManager: flickManager,
@@ -43,7 +42,7 @@ class _AboutState extends State<About> {
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     children: [
@@ -95,12 +94,13 @@ class _AboutState extends State<About> {
             child: Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.symmetric(vertical: 5),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                   child: Text(
                     widget.movie.description,
-                    textAlign: TextAlign.start,
+                    textAlign: TextAlign.justify,
                     style: GoogleFonts.poppins(
-                      color: Colors.white10,
+                      color: Colors.white,
                     ),
                   ),
                 ),

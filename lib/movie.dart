@@ -24,7 +24,7 @@ class Movie {
   });
 }
 
-var text = lorem(paragraphs: 4, words: 200);
+var text = lorem(paragraphs: 1, words: 80);
 
 List<Map<String, dynamic>> rawData = [
   {
