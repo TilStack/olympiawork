@@ -46,13 +46,16 @@ class _HomeScreenState extends State<HomeScreen> {
     movies = rawData
         .map(
           (e) => Movie(
-              title: e['title'],
-              image: e['image'],
-              index: e['index'],
-              like: e['like'],
-              note: e['note'],
-              categorie: e['categorie'],
-              time: e['time']),
+            title: e['title'],
+            image: e['image'],
+            index: e['index'],
+            like: e['like'],
+            note: e['note'],
+            categorie: e['categorie'],
+            time: e['time'],
+            description: e['description'],
+            video: e['video'],
+          ),
         )
         .toList();
   }

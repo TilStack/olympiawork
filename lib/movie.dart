@@ -1,3 +1,5 @@
+import 'package:flutter_lorem/flutter_lorem.dart';
+
 class Movie {
   final String title;
   final String image;
@@ -5,6 +7,8 @@ class Movie {
   final String note;
   final String categorie;
   final String time;
+  final String description;
+  final String video;
   final int index;
 
   Movie({
@@ -15,8 +19,12 @@ class Movie {
     required this.note,
     required this.categorie,
     required this.time,
+    required this.description,
+    required this.video,
   });
 }
+
+var text = lorem(paragraphs: 4, words: 200);
 
 List<Map<String, dynamic>> rawData = [
   {
@@ -26,7 +34,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "2k",
     'note': "1k",
     'categorie': 'Science-fiction',
-    'time': "2h"
+    'time': "2h",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
   {
     'title': "Charles de Gaulle",
@@ -35,7 +45,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "3k",
     'note': "1k",
     'categorie': 'Science-fiction',
-    'time': "2h06"
+    'time': "2h06",
+    'description': text,
+    'video': "assets/media/gaulle.mp4"
   },
   {
     'title': "Age de glace",
@@ -44,7 +56,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "1k",
     'note': "0.5k",
     'categorie': 'Adventure',
-    'time': "2h0"
+    'time': "2h0",
+    'description': text,
+    'video': "assets/media/glace.mp4"
   },
   {
     'title': "Hunter",
@@ -53,7 +67,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "2k",
     'note': "1k",
     'categorie': 'Adventure',
-    'time': "2h6"
+    'time': "2h6",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
   {
     'title': "Le livre sacre",
@@ -62,7 +78,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "1k",
     'note': "1k",
     'categorie': 'Horror',
-    'time': "2h0"
+    'time': "2h0",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
   {
     'title': "La mafia",
@@ -71,7 +89,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "2k",
     'note': "0.8k",
     'categorie': 'Horror',
-    'time': "2h6"
+    'time': "2h6",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
   {
     'title': "Super Mario",
@@ -80,7 +100,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "3k",
     'note': "1k",
     'categorie': 'Comedy',
-    'time': "2h0"
+    'time': "2h0",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
   {
     'title': "Le morbius",
@@ -89,7 +111,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "2k",
     'note': "1k",
     'categorie': 'Comedy',
-    'time': "2h6"
+    'time': "2h6",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
   {
     'title': "MULAN",
@@ -98,7 +122,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "10k",
     'note': "1k",
     'categorie': 'Action',
-    'time': "2h"
+    'time': "2h",
+    'description': text,
+    'video': "assets/media/mulan.mp4"
   },
   {
     'title': "Kung Fund Panda",
@@ -107,7 +133,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "2k",
     'note': "3k",
     'categorie': 'Action',
-    'time': "2h"
+    'time': "2h",
+    'description': text,
+    'video': "assets/media/panda.mp4"
   },
   {
     'title': "Le rebelle",
@@ -116,7 +144,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "1k",
     'note': "1k",
     'categorie': 'Science-fiction',
-    'time': "2h6"
+    'time': "2h6",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
   {
     'title': "Shrek",
@@ -125,7 +155,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "2k",
     'note': "3k",
     'categorie': 'Science-fiction',
-    'time': "2h06"
+    'time': "2h06",
+    'description': text,
+    'video': "assets/media/shreck.mp4"
   },
   {
     'title': "Sonic le rebelle",
@@ -134,7 +166,9 @@ List<Map<String, dynamic>> rawData = [
     'like': "2k",
     'note': "9k",
     'categorie': 'Comedy',
-    'time': "2h"
+    'time': "2h",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
   {
     'title': "Le coordonnier",
@@ -143,6 +177,8 @@ List<Map<String, dynamic>> rawData = [
     'like': "2k",
     'note': "4k",
     'categorie': 'Science',
-    'time': "2h6"
+    'time': "2h6",
+    'description': text,
+    'video': "assets/media/discour.mp4"
   },
 ];
