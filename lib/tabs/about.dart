@@ -22,7 +22,7 @@ class _AboutState extends State<About> {
     double height = MediaQuery.of(context).size.height;
     var text = lorem(paragraphs: 1, words: 50);
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           Center(

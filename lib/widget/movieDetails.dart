@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:olympiawork/movie.dart';
 import 'package:olympiawork/tabs/session.dart';
 
+import '../const.dart';
 import '../tabs/about.dart';
 
 class MoviesDetails extends StatefulWidget {
@@ -17,9 +18,9 @@ class _MoviesDetailsState extends State<MoviesDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 41, 40, 40),
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 41, 40, 40),
+        backgroundColor: appBarBackground,
         centerTitle: true,
         title: Text(
           'Expendables4',

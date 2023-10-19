@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:olympiawork/widget/appBar.dart';
 import 'package:olympiawork/widget/movieDetails.dart';
+import '../const.dart';
 import '../movie.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   List<bool> uptitlebool = [true, false, false];
   List<Movie> movies = [];
+  int currentIndex = 1;
   @override
   void initState() {
     super.initState();
@@ -63,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 41, 40, 40),
+      backgroundColor: backgroundColor,
       appBar: appBarWidget(
         context,
         () => _displayBottomSheetLocation(context),
@@ -138,78 +140,86 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     },
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            movies[index].image,
-                            height: 300,
-                            width: 250,
-                            fit: BoxFit.cover,
-                          ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                          color: borderColor,
                         ),
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            color: Colors.black.withOpacity(0.6),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  movies[index].title,
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      movies[index].note,
-                                      style: GoogleFonts.poppins(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                      ),
+                      ),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              movies[index].image,
+                              height: 300,
+                              width: 250,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              color: Colors.black.withOpacity(0.6),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    movies[index].title,
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Row(
-                                      children: List.generate(
-                                        5,
-                                        (_) => const Icon(
-                                          Icons.star,
-                                          color: Colors.red,
-                                          size: 15,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        movies[index].note,
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 12,
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Row(
+                                        children: List.generate(
+                                          5,
+                                          (_) => const Icon(
+                                            Icons.star,
+                                            color: Colors.red,
+                                            size: 15,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 10,
+                            right: 10,
+                            child: Row(
+                              children: [
+                                const Icon(Icons.favorite, color: Colors.red),
+                                const SizedBox(width: 4),
+                                Text(
+                                  movies[index].like,
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        Positioned(
-                          top: 10,
-                          right: 10,
-                          child: Row(
-                            children: [
-                              const Icon(Icons.favorite, color: Colors.red),
-                              const SizedBox(width: 4),
-                              Text(
-                                movies[index].like,
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 }),
@@ -220,8 +230,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enlargeCenterPage: true,
                   autoPlayAnimationDuration: const Duration(seconds: 2),
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      print(reason.toString());
+                      currentIndex = index;
+                    });
+                  },
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int i = 0; i < location.length; i++)
+                  Container(
+                    height: 10,
+                    width: 10,
+                    margin: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: currentIndex != 1 ? red : Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          spreadRadius: 1,
+                          blurRadius: 3,
+                          offset: Offset(2, 2),
+                        )
+                      ],
+                    ),
+                  ),
+              ],
             ),
             const SizedBox(
               height: 10,
@@ -338,9 +380,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Future _displayBottomSheetLocation(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      backgroundColor: Color.fromARGB(255, 42, 39, 39),
+      backgroundColor: appBarBackground,
       isDismissible: true,
-      barrierColor: Colors.black87.withOpacity(0.5),
+      barrierColor: appBarBackground.withOpacity(2),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(30),
@@ -419,7 +461,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future _displayBottomSheetLanguage(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      backgroundColor: Color.fromARGB(255, 42, 39, 39),
+      backgroundColor: appBarBackground,
       isDismissible: true,
       barrierColor: Colors.black87.withOpacity(0.5),
       shape: const RoundedRectangleBorder(
@@ -462,7 +504,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future _displayBottomSheetLogin(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      backgroundColor: Color.fromARGB(255, 42, 39, 39),
+      backgroundColor: appBarBackground,
       isDismissible: true,
       barrierColor: Colors.black87.withOpacity(0.5),
       shape: const RoundedRectangleBorder(

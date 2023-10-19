@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../const.dart';
 import '../splashScreen/splash1.dart';
 
 AppBar appBarWidget(BuildContext context, Function()? function1,
     Function()? function2, Function()? function3,
     {required String location, required String language}) {
   return AppBar(
-    backgroundColor: const Color.fromARGB(255, 41, 40, 40),
+    backgroundColor: appBarBackground,
     leading: GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
@@ -76,15 +77,22 @@ AppBar appBarWidget(BuildContext context, Function()? function1,
           ],
         ),
       ),
-      ElevatedButton(
-        onPressed: function3,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red,
-        ),
-        child: Text(
-          'Log In',
-          style: GoogleFonts.poppins(
-              color: Colors.white, fontWeight: FontWeight.bold),
+      Container(
+        margin: const EdgeInsets.only(right: 8),
+        child: ElevatedButton(
+          onPressed: function3,
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  15,
+                ),
+              )),
+          child: Text(
+            'Log In',
+            style: GoogleFonts.poppins(
+                color: Colors.white, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     ],
