@@ -19,7 +19,7 @@ class _SplashRevalState extends State<SplashReval>
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: Duration(milliseconds: 500),
     );
     animation = CurvedAnimation(
       parent: animationController!,
